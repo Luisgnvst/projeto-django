@@ -1,6 +1,16 @@
 <h1> Minhas Tarefas </h1>
 
 <ul>{%  for t in tarefas %}
-   <li> {{ t }}</li>
+   <li> {{ t.tarefa }}
+
+    {% if t.concluida %}
+     feita
+{% else %}
+    pendente
+{% endif %}
+
+   </li>
+
 {% endfor %} </ul>
+
 
