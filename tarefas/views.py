@@ -15,4 +15,9 @@ def concluir_tarefa(request, id):
     tarefa.save()
     return redirect('lista_tarefas')
 
+def apagar_tarefa(request, id):
+    tarefa = Tarefa.objects.get(id=id)
+    tarefa.delete()
+    return redirect('lista_tarefas')
+
 

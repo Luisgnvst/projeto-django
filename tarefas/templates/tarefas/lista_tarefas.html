@@ -14,6 +14,10 @@
     <button> Concluir Tarefa </button>
 </form>
 
+<form method="post" action="{% url 'apagar_tarefa' t.id %}">
+    {% csrf_token %}
+    <button> Apagar Tarefa </button>
+</form>
 
    </li>
 {% endfor %} </ul>
@@ -24,3 +28,4 @@
     <button>adicionar</button>
 
 </form>
+
