@@ -54,39 +54,49 @@ input {
     border-radius: 5px;
 }
 
+li.feita {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.status {
+    display: inline-block;  /* inline-block evita o risco da tarefa feita passar por cima dela */
+    font-size: 12px;
+    background-color: #eeeeee;
+    color: #666666;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin: 0 10px;
+}
     </style>
 </head>
 
 <body>
 <h1> Minhas Tarefas </h1>
 
-<ul>{%  for t in tarefas %}
-   <li> {{ t.tarefa }}
+<ul>{% for t in tarefas %}
+    <li class="{% if t.concluida %}feita{% endif %}">
+        {{ t.tarefa }}
+        <span class="status">
+            {% if t.concluida %}feita{% else %}pendente{% endif %}
+        </span>
 
-    {% if t.concluida %}
-     feita
-{% else %}
-    pendente
-{% endif %}
+        <form method="post" action="{% url 'concluir_tarefa' t.id %}">
+            {% csrf_token %}
+            <button> Concluir Tarefa </button>
+        </form>
 
-<form method="post" action="{% url 'concluir_tarefa' t.id %}">
-    {% csrf_token %}
-    <button> Concluir Tarefa </button>
-</form>
-
-<form method="post" action="{% url 'apagar_tarefa' t.id %}">
-    {% csrf_token %}
-    <button> Apagar Tarefa </button>
-</form>
-
-   </li>
-{% endfor %} </ul>
+        <form method="post" action="{% url 'apagar_tarefa' t.id %}">
+            {% csrf_token %}
+            <button> Apagar Tarefa </button>
+        </form>
+    </li>
+{% endfor %}</ul>
 
 <form method="post">
 {% csrf_token %}
     <input name="tarefa">
     <button>adicionar</button>
-
 </form>
 </body>
 </html>
