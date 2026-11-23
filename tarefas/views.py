@@ -9,4 +9,10 @@ def lista_tarefas(request):
         return redirect('lista_tarefas')
     return render(request, 'tarefas/lista_tarefas.html', {'tarefas': tarefas})
 
+def concluir_tarefa(request, id):
+    tarefa = Tarefa.objects.get(id=id)
+    tarefa.concluida = True
+    tarefa.save()
+    return redirect('lista_tarefas')
+
 

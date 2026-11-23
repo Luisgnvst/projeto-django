@@ -9,18 +9,18 @@
     pendente
 {% endif %}
 
+<form method="post" action="{% url 'concluir_tarefa' t.id %}">
+    {% csrf_token %}
+    <button> Concluir Tarefa </button>
+</form>
+
+
    </li>
-
 {% endfor %} </ul>
-
-
-
 
 <form method="post">
 {% csrf_token %}
     <input name="tarefa">
     <button>adicionar</button>
-
-
 
 </form>
