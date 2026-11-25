@@ -54,13 +54,13 @@ input {
     border-radius: 5px;
 }
 
-li.feita {
+li.feita .texto {
     color: gray;
     text-decoration: line-through;
 }
 
 .status {
-    display: inline-block;  /* inline-block evita o risco da tarefa feita passar por cima dela */
+    display: inline-block;
     font-size: 12px;
     background-color: #eeeeee;
     color: #666666;
@@ -76,7 +76,7 @@ li.feita {
 
 <ul>{% for t in tarefas %}
     <li class="{% if t.concluida %}feita{% endif %}">
-        {{ t.tarefa }}
+        <span class="texto">{{ t.tarefa }}</span>
         <span class="status">
             {% if t.concluida %}feita{% else %}pendente{% endif %}
         </span>
